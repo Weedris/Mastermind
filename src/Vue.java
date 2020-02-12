@@ -1,5 +1,7 @@
+import java.awt.BorderLayout;
 import java.awt.Button;
 import java.awt.Canvas;
+import java.awt.Color;
 import java.awt.Frame;
 import java.awt.Panel;
 
@@ -21,9 +23,12 @@ public class Vue extends Frame{
 
 		initButton(Modele.COULEURS.length);
 		
+		this.setLayout(new BorderLayout());
+		
+		this.setBackground(Color.LIGHT_GRAY);
 		this.setSize(400, 400);
 		this.add(VuePropositions);
-		this.add(VueClavier);
+		this.add(VueClavier, BorderLayout.SOUTH);
 		this.setVisible(true);
 		
 	}
