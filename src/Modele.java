@@ -7,7 +7,7 @@ public class Modele {
 	public static enum Etat {EN_COURS, GAGNE, PERDU};
 	
 	private Etat etat = Etat.EN_COURS;
-	private Rangee combinaison = new Rangee();
+	private Rangee combinaison = new Rangee(true);
 	private Rangee[] propositions = new Rangee[TENTATIVES];
 	private Rangee prop_actuel;
 	private int tentatives = 0;
@@ -22,31 +22,20 @@ public class Modele {
 	}
 	
 	public void prop_verification() {
-		if(prop_actuel.indice_jeton+1 == combinaison.jetons.length) {
-			for(int i = 0; i<combinaison.jetons.length; i++) {
-				for(int j = 0; j<combinaison.jetons.length; j++) {
-					if(prop_actuel.jetons[j].equals(combinaison.jetons[i]) && i == j){
-						prop_actuel.blancs +=1;
-					}
-					else if(prop_actuel.jetons[j].equals(combinaison.jetons[i])) {
-						prop_actuel.noirs +=1;
-					}
-				}
-			}
-		}
+		
 	}
 
 	public void new_prop() {
-		prop_actuel.indice_jeton = 0;
-		prop_actuel.blancs = 0;
-		prop_actuel.noirs = 0;
+		prop_actuel = new Rangee(false);
 		
 	}
 	
-	public void complete_prop(Color c, int i) {
-		if(i<prop_actuel.indice_jeton) {
-			prop_actuel.jetons[i] = c;
-			prop_actuel.indice_jeton +=1;
+	public void complete_prop(Color c) {
+		prop_actuel.jetons[prop_actuel.indice_jeton] = c;
+		prop_actuel.indice_jeton +=1;
+		if (true) {
+			//Est-ce qu'on a terminé la rangé ?
+			//Et si oui..
 		}
 	}
 	
@@ -61,5 +50,18 @@ public class Modele {
 		return etat == Etat.GAGNE;
 	}
 	
+	public static void main(String[] args) {
+		Modele m = new Modele();
+		System.out.println(m.combinaison);
+		m.new_prop();
+		m.complete_prop(Color.white);
+		m.complete_prop(Color.magenta);
+		m.complete_prop(Color.orange);
+		m.complete_prop(Color.magenta);
+		System.out.println(m.prop_actuel);
+		m.prop_verification();
+		System.out.println(m.prop_actuel);
+
+	}
 }
 
