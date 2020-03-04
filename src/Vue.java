@@ -4,6 +4,8 @@ import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Frame;
 import java.awt.Panel;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 public class Vue extends Frame{
 
@@ -13,38 +15,39 @@ public class Vue extends Frame{
 	private static final long serialVersionUID = 5769119333854024922L;
 
 	
-	private Panel VueClavier;
-	private Canvas VuePropositions;
+	private VueClavier VC;
+	private VuePropositions VP;
 	
-	public Vue() {
+	public Vue(Modele m) {
 		super();
-		VueClavier = new Panel();
-		VuePropositions = new Canvas();
+		VC = new VueClavier(Modele.COULEURS.length);
+		VP = new VuePropositions(m);
 
-		initButton(Modele.COULEURS.length);
 		
 		this.setLayout(new BorderLayout());
 		
 		this.setBackground(Color.LIGHT_GRAY);
 		this.setSize(400, 400);
-		this.add(VuePropositions);
-		this.add(VueClavier, BorderLayout.SOUTH);
+		this.add(VP);
+		this.add(VC, BorderLayout.SOUTH);
 		this.setVisible(true);
 		
-	}
-	
-	private void initButton(int A) {
-		for (int i = 0; i < A; i++) {
-			Button b = new Button();
-			b.setBackground(Modele.COULEURS[i]);
-			VueClavier.add(b);
-		}
+		this.addWindowListener(new WindowAdapter(){
+			public void windowClosing(WindowEvent we) {
+				dispose();
+			}
+		});
+		
 	}
 	
 	
 	
 	public static void main(String[] args) {
-		Vue v = new Vue();
+		Modele m = new Modele();
+		Rangee r = new Rangee();
+		m.propositions = new Rangee[1];
+		m.propositions[0] = r;
+		Vue v = new Vue(m);
 	}
 
 }
