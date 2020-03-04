@@ -44,9 +44,6 @@ public class Vue extends Frame{
 	
 	public static void main(String[] args) {
 		Modele m = new Modele();
-		Rangee r = new Rangee();
-		m.propositions = new Rangee[1];
-		m.propositions[0] = r;
 		Vue v = new Vue(m);
 	}
 

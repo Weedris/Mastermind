@@ -16,7 +16,7 @@ public class VuePropositions extends Canvas{
 	}
 	
 	public void paint(Graphics g){
-		Rangee[] r = m.getProp();
+		Rangee[] r = m.get_prop();
 		for(int i = 0; i < r.length; i++) {
 			for(int j = 0; j < r[i].jetons.length; j++) {
 				g.setColor(Color.green);
