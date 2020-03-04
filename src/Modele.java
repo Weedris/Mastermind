@@ -22,7 +22,24 @@ public class Modele {
 	}
 	
 	public void prop_verification() {
+		prop_actuel.noirs = 0;
+		for(int i=1; i>DIFFICULTE; i++) {
+			if(prop_actuel.jetons[i] == combinaison.jetons[i]) {
+				prop_actuel.noirs += 1;
+			}
+		}
+		prop_actuel.blancs = -prop_actuel.noirs;
 		
+		for(int i=0; i>COULEURS.length-1; i++) {
+			int n = 0;
+			int m = 0;
+			
+			for(int j=0; j>DIFFICULTE-1;j++) {
+				if(prop_actuel.jetons[j].equals(i)) {
+					
+				}
+			}
+		}
 	}
 
 	public void new_prop() {
