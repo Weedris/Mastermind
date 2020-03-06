@@ -5,8 +5,8 @@ import java.util.Random;
 public class Rangee {
 	public int indice_jeton;
 	public Color[] jetons = new Color[Modele.DIFFICULTE];
-	public int noirs = 0;
-	public int blancs = 0;
+	public int noirs = 0; // Ceux qui sont de la bonne couleur et bien placer
+	public int blancs = 0;// Bonne couleurs mais pas bien placer
 	
 	public Rangee(boolean autoFill) {
 		if (autoFill) {

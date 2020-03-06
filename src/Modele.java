@@ -21,7 +21,7 @@ public class Modele {
 		return propositions;
 	}
 	
-	public int prop_verification() {
+	public void prop_verification() {
 		prop_actuel.noirs = 0;
 		for(int i=0; i<DIFFICULTE; i++) {
 			if(prop_actuel.jetons[i] == combinaison.jetons[i]) {
@@ -41,9 +41,7 @@ public class Modele {
 				if(combinaison.jetons[j].equals(COULEURS[i])){
 					m = m+1;
 				}
-
 			}
-			
 			if(n<m){
 				prop_actuel.blancs = prop_actuel.blancs+n;
 			}
@@ -51,7 +49,9 @@ public class Modele {
 				prop_actuel.blancs = prop_actuel.blancs+m;
 			}
 		}
-		return 10*prop_actuel.noirs+prop_actuel.blancs;
+		System.out.println(prop_actuel.blancs);
+		System.out.println(prop_actuel.noirs);
+		
 	}
 
 	public void new_prop() {
@@ -62,14 +62,22 @@ public class Modele {
 	public void complete_prop(Color c) {
 		prop_actuel.jetons[prop_actuel.indice_jeton] = c;
 		prop_actuel.indice_jeton +=1;
-		if (true) {
-			//Est-ce qu'on a terminé la rangé ?
-			//Et si oui..
+		if (prop_actuel.indice_jeton == DIFFICULTE) {
+			prop_verification();
+			if(win()){
+				archiverProp();
+				System.out.println("C'est gagner");
+			}
+			else{
+				System.out.println("Perdu on recommence !");
+				archiverProp();
+				new_prop();
+			}
 		}
 	}
 	
 	public boolean win() {
-		if(prop_actuel.blancs == DIFFICULTE) {
+		if(prop_actuel.noirs == DIFFICULTE) {
 			etat = Etat.GAGNE;
 		}
 		else if(tentatives>=TENTATIVES) {
@@ -83,13 +91,23 @@ public class Modele {
 		Modele m = new Modele();
 		System.out.println(m.combinaison);
 		m.new_prop();
-		m.complete_prop(Color.orange);
+		System.out.println(m.prop_actuel);
+		m.complete_prop(Color.orange);//white
+		m.complete_prop(Color.magenta);//magenta
+		m.complete_prop(Color.blue);//orange
+		m.complete_prop(Color.magenta);//magenta
+		//________________________________________
 		m.complete_prop(Color.magenta);
+		m.complete_prop(Color.magenta);
+		m.complete_prop(Color.blue);
+		m.complete_prop(Color.blue);
+		//________________________________________
 		m.complete_prop(Color.white);
 		m.complete_prop(Color.magenta);
-		System.out.println(m.prop_actuel);
-		System.out.println(m.prop_verification());
-		System.out.println(m.prop_actuel);
+		m.complete_prop(Color.orange);
+		m.complete_prop(Color.magenta);
+		
+		System.out.println(m.tentatives);
 
 	}
 }
