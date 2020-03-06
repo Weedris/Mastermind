@@ -21,25 +21,37 @@ public class Modele {
 		return propositions;
 	}
 	
-	public void prop_verification() {
+	public int prop_verification() {
 		prop_actuel.noirs = 0;
-		for(int i=1; i>DIFFICULTE; i++) {
+		for(int i=0; i<DIFFICULTE; i++) {
 			if(prop_actuel.jetons[i] == combinaison.jetons[i]) {
 				prop_actuel.noirs += 1;
 			}
 		}
 		prop_actuel.blancs = -prop_actuel.noirs;
 		
-		for(int i=0; i>COULEURS.length-1; i++) {
+		for(int i=0; i<COULEURS.length; i++) {
 			int n = 0;
 			int m = 0;
 			
-			for(int j=0; j>DIFFICULTE-1;j++) {
-				if(prop_actuel.jetons[j].equals(i)) {
-					
+			for(int j=0; j<DIFFICULTE;j++) {
+				if(prop_actuel.jetons[j].equals(COULEURS[i])) {
+					n = n+1;
 				}
+				if(combinaison.jetons[j].equals(COULEURS[i])){
+					m = m+1;
+				}
+
+			}
+			
+			if(n<m){
+				prop_actuel.blancs = prop_actuel.blancs+n;
+			}
+			else{
+				prop_actuel.blancs = prop_actuel.blancs+m;
 			}
 		}
+		return 10*prop_actuel.noirs+prop_actuel.blancs;
 	}
 
 	public void new_prop() {
@@ -71,12 +83,12 @@ public class Modele {
 		Modele m = new Modele();
 		System.out.println(m.combinaison);
 		m.new_prop();
-		m.complete_prop(Color.white);
-		m.complete_prop(Color.magenta);
 		m.complete_prop(Color.orange);
 		m.complete_prop(Color.magenta);
+		m.complete_prop(Color.white);
+		m.complete_prop(Color.magenta);
 		System.out.println(m.prop_actuel);
-		m.prop_verification();
+		System.out.println(m.prop_verification());
 		System.out.println(m.prop_actuel);
 
 	}

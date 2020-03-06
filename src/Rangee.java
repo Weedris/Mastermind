@@ -21,7 +21,7 @@ public class Rangee {
 	public String toString() {
 		String out = new String(); 
 		out += Arrays.toString(this.jetons);
-		out += this.blancs + "," + this.noirs;
+		out += this.noirs + "," + this.blancs;
 		return out;
 	}
 	
