@@ -1,5 +1,6 @@
 import java.awt.Canvas;
 import java.awt.Graphics;
+
 public class VuePropositions extends Canvas{
 
 	/**
@@ -16,12 +17,10 @@ public class VuePropositions extends Canvas{
 	public void paint(Graphics g){
 		Rangee[] r = m.get_prop();
 		for(int i = 0; i < m.getTentative(); i++) {
-			// Dessin des cercles
 			for(int j = 0; j < r[i].jetons.length; j++) {
 				g.setColor(r[i].jetons[j]);
 				g.fillOval(j * 50, i * 50, 40, 40);
 			}
-			// Dessin des cercle de verif
 			
 			int noir = r[i].noirs;
 			for(int j = 0; j < r[i].jetons.length; j++) {
@@ -36,7 +35,8 @@ public class VuePropositions extends Canvas{
 				}
 			}
 		}
-		if(!m.win()) {
+		
+		if(m.get_etat() == Modele.Etat.EN_COURS) {
 			Rangee enCour = m.get_prop_actuel();
 			for(int i = 0; i < Modele.DIFFICULTE; i++) {
 				if (enCour.jetons[i] == null) {
@@ -50,7 +50,5 @@ public class VuePropositions extends Canvas{
 				
 			}
 		}
-		
 	}
-	
 }
