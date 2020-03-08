@@ -36,18 +36,21 @@ public class VuePropositions extends Canvas{
 				}
 			}
 		}
-		Rangee enCour = m.get_prop_actuel();
-		for(int i = 0; i < Modele.DIFFICULTE; i++) {
-			if (enCour.jetons[i] == null) {
-				g.setColor(Modele.COULEURS[6]);
-				g.drawOval(i * 50, (r[0].jetons.length - 1) * 50, 40, 40);
+		if(!m.win()) {
+			Rangee enCour = m.get_prop_actuel();
+			for(int i = 0; i < Modele.DIFFICULTE; i++) {
+				if (enCour.jetons[i] == null) {
+					g.setColor(Modele.COULEURS[6]);
+					g.drawOval(i * 50, (r[0].jetons.length - 1) * 50, 40, 40);
+				}
+				else {
+					g.setColor(enCour.jetons[i]);
+					g.fillOval(i * 50, (r[0].jetons.length - 1) * 50, 40, 40);
+				}
+				
 			}
-			else {
-				g.setColor(enCour.jetons[i]);
-				g.fillOval(i * 50, (r[0].jetons.length - 1) * 50, 40, 40);
-			}
-			
 		}
+		
 	}
 	
 }
