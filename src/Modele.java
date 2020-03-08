@@ -17,14 +17,6 @@ public class Modele {
 		tentatives +=1;
 	}
 	
-	public Rangee[] get_prop() {
-		return propositions;
-	}
-	
-	public int getTentative() {
-		return tentatives;
-	}
-	
 	public void prop_verification() {
 		prop_actuel.noirs = 0;
 		for(int i=0; i<DIFFICULTE; i++) {
@@ -89,6 +81,23 @@ public class Modele {
 		}
 		
 		return etat == Etat.GAGNE;
+	}
+	
+	
+	public Rangee[] get_prop() {
+		return propositions;
+	}
+	
+	public Rangee get_prop_actuel() {
+		return prop_actuel;
+	}
+	
+	public int getTentative() {
+		return tentatives;
+	}
+	
+	public Etat get_etat() {
+		return etat;
 	}
 	
 	public static void main(String[] args) {
