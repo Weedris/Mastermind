@@ -1,7 +1,7 @@
 import java.awt.Color;
 
 public class Modele {
-	public static Color[] COULEURS = {Color.yellow, Color.blue,Color.magenta,Color.red,Color.orange, Color.white,Color.black};
+	public static Color[] COULEURS = {Color.yellow, Color.blue, Color.magenta, Color.red, Color.orange, Color.white, Color.black};
 	public static int TENTATIVES = 10;
 	public static int DIFFICULTE = 4;
 	public static enum Etat {EN_COURS, GAGNE, PERDU};
@@ -19,6 +19,10 @@ public class Modele {
 	
 	public Rangee[] get_prop() {
 		return propositions;
+	}
+	
+	public int getTentative() {
+		return tentatives;
 	}
 	
 	public void prop_verification() {
@@ -108,7 +112,9 @@ public class Modele {
 		m.complete_prop(Color.magenta);
 		
 		System.out.println(m.tentatives);
-
+		
+		Vue v = new Vue(m);
+		
 	}
 }
 
