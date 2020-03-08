@@ -23,15 +23,17 @@ public class VuePropositions extends Canvas{
 			}
 			
 			int noir = r[i].noirs;
+			int blanc = r[i].blancs;
 			for(int j = 0; j < r[i].jetons.length; j++) {
 				if (noir >= 0) {
 					g.setColor(Modele.COULEURS[6]);
 					g.fillOval(r[i].jetons.length * 50 + j * 20, i * 50, 20, 20);
 					noir -= 1;
 				}
-				else {
+				else if (blanc >= 0){
 					g.setColor(Modele.COULEURS[5]);
 					g.fillOval(r[i].jetons.length * 50 + j * 20, i * 50, 20, 20);
+					blanc -= 1;
 				}
 			}
 		}
