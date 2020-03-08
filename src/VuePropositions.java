@@ -24,7 +24,6 @@ public class VuePropositions extends Canvas{
 			// Dessin des cercle de verif
 			
 			int noir = r[i].noirs;
-			int blanc = r[i].blancs;
 			for(int j = 0; j < r[i].jetons.length; j++) {
 				if (noir >= 0) {
 					g.setColor(Modele.COULEURS[6]);
@@ -34,9 +33,20 @@ public class VuePropositions extends Canvas{
 				else {
 					g.setColor(Modele.COULEURS[5]);
 					g.fillOval(r[i].jetons.length * 50 + j * 20, i * 50, 20, 20);
-					blanc -= 1;
 				}
 			}
+		}
+		Rangee enCour = m.get_prop_actuel();
+		for(int i = 0; i < Modele.DIFFICULTE; i++) {
+			if (enCour.jetons[i] == null) {
+				g.setColor(Modele.COULEURS[6]);
+				g.drawOval(i * 50, (r[0].jetons.length - 1) * 50, 40, 40);
+			}
+			else {
+				g.setColor(enCour.jetons[i]);
+				g.fillOval(i * 50, (r[0].jetons.length - 1) * 50, 40, 40);
+			}
+			
 		}
 	}
 	
